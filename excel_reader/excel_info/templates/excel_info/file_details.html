@@ -1,0 +1,111 @@
+{% extends 'excel_info/index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="col-md-12">
+        <div class="col-md-4 ">
+            <a href="{% url 'FileListView' %}">
+                <h4>Back</h4>
+            </a>
+        </div>
+        <div class="col-md-8 pull-left">
+            <h2>File Details</h2>
+        </div>
+    </div>
+    <div class="col-md-12">
+    
+        <div class="row">
+            <div class="col-md-2">
+    
+            </div>
+            <div class="col-md-4">
+                <label>
+                    <h4>Files : {{ file_detail.file_name }} </h4>
+                </label>
+            </div>
+            <div class="col-md-10">
+                <div id="wrap">
+                        
+                    <div class="container">
+                    
+
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                {% for key, value in file_detail.data.items %}
+                                    <th> {{ key }} </th>
+
+
+                                {% endfor %}
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {% for key, value in file_detail.data.items %}
+                                <tr>
+                                        {% for item in value %}
+
+                                            <td> {{item}} </td>
+                                        {% endfor %}
+                                </tr>
+                                {% endfor %}
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+    
+                </div>
+
+                
+            </div>
+        </div>
+    
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $("tbody").each(function () {
+            var $this = $(this);
+            var newrows = [];
+            $this.find("tr").each(function () {
+                var i = 0;
+                $(this).find("td,th").each(function () {
+                    i++;
+                    if (newrows[i] === undefined) {
+                        newrows[i] = $("<tr></tr>");
+                    }
+                    newrows[i].append($(this));
+                });
+            });
+            $this.find("tr").remove();
+            $.each(newrows, function () {
+                $this.append(this);
+            });
+        });
+
+        return false;
+    });
+    $(document).ready(function () {
+            $('#example').DataTable();
+        });
+</script>
+</html>
+{% endblock %}
