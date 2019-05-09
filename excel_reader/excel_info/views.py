@@ -35,8 +35,11 @@ class UploadView(View):
             file = request.FILES['file']
             extention = str(file).split(".")[-1]
             print("extention", extention)
-            if extention in ['xlsx', 'xls', 'xlsm']:
-                
+            if extention not in ['xlsx', 'xls', 'xlsm']:
+                context = {
+                    'form': form,
+                    'status': '1',
+                }
                 return render(request, self.template_name, context)
 
             try:
@@ -46,6 +49,7 @@ class UploadView(View):
                     print("already existing")
                     context = {
                         'form': form,
+                        'status': '2',
                     }
                     return render(request, self.template_name, context)
 

@@ -11,25 +11,38 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        .pagetittle {
+            height: 100px;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            /* background-color: #111; */
+            overflow-x: hidden;
+            padding-top: 30px;
+            padding-bottom: 100px;
+        
+        }
+        
+    </style>
 </head>
 <body>
     
 
 
     <div class="col-md-12">
-    
+            <div class="row pagetitle">
+                <h2> List of files </h2>
+            </div>
             <div class="row">
                 <div class="col-md-2">
-    
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label>
-                                    <h4>Files  :</h4>
-                                </label>
-                            </div>
+                            
                             <div class="list-group">
                                 {% for file in file_list %}
                                 <a href="{% url 'file_details' file.id %}" class="list-group-item">

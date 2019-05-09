@@ -12,6 +12,24 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+            <style>
+                .pagetittle {
+                    height: 100px;
+                    width: 100%;
+                    position: fixed;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                    /* background-color: #111; */
+                    overflow-x: hidden;
+                    padding-top: 30px;
+                    padding-bottom: 100px;
+            
+                }
+                p {
+                    color: red
+                }
+            </style>
     </head>
 <body>
     
@@ -20,7 +38,9 @@
         <div class="col-md-12">
             <form method="post" action="{% url 'UploadView' %}" enctype="multipart/form-data">
                             {% csrf_token %}
-
+                <div class="row pagetitle">
+                    <h2> Upload Excel file </h2>
+                </div>
                 <div class="row">
                     <div class="col-md-2">
 
@@ -31,11 +51,27 @@
                                 <div class="col-md-3"><label>
                                         <h4>Upload file :</h4>
                                     </label></div>
-                                <div class="col-md-4" title=" Attach file" data-toggle="tooltip" data-placement="right">{{ form.file }}</div>
+                                <div class="col-md-4" title=" Attach file" data-toggle="tooltip" data-placement="right">{{ form.file }}
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Supported formats (.xls, .xlsx, .xlsm)</p>
+                                </div>
+                                
                                 <span class="error">
                                     <label class="error">{{form.file.errors.as_text}}</label>
+                                    {% if status == '1' %}
+                                    <p class=" label label-danger">
+                                        Invalid file format
+                                    </p>
+                                    {% elif status == '2' %}
+                                    <p class=" label label-danger">
+                                        File already exists
+                                    </p>
+                                    {% endif %}
                                 </span>
                             </div>
+                           
                         </div>
                         <div class="col-md-12 noMargin">
                             <div class="pull-left">

@@ -5,23 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+    
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+    
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+    
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+    
+       .topbar {
+            height: 100px;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            /* background-color: #111; */
+            overflow-x: hidden;
+            padding-top: 30px;
+            padding-bottom: 40px;
+        
+        }
+        .topbar h2 {
+            text-align: center
+        }
+    
+     
+    </style>
+
 </head>
 <body>
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-2 height=100%">
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="">
-                                upload
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="col-md-2">
+                <div class="sidenav">
+                    <nav>
+                        <h2>
+                            Excel Reader
+                        </h2>
+                        <br>
+                        <br>
 
+                        <ul>
+                            <li>
+                                <a href="{% url 'UploadView' %}">
+                                    Upload
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'FileListView' %}">
+                                    File list
+                                </a>
+                            </li>
+                            <
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div class="col-md-10">
+                <div class="col-md-12 topbar">
+                    <h2>
+                        Excel Reader
+                    </h2>
+                </div>
+                
                 {% block content %}
                     
                 {% endblock content %}
