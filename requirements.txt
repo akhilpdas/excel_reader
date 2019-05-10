@@ -1,0 +1,5 @@
+Django==2.1
+djangorestframework==3.9.2
+jsonfield==2.0.2
+openpyxl==2.6.2
+xlrd==1.2.0
