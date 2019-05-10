@@ -83,7 +83,7 @@ class UploadView(View):
 
             ExcelInfo.objects.create(file_name=file,
                                      data=data)
-            return http.HttpResponseRedirect(reverse('SearchView'))
+            return http.HttpResponseRedirect(reverse('FileListView'))
         else:
 
             context = {
