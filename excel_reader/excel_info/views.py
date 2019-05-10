@@ -35,7 +35,7 @@ class UploadView(View):
             file = request.FILES['file']
             extention = str(file).split(".")[-1]
             print("extention", extention)
-            if extention not in ['xlsx', 'xls', 'xlsm']:
+            if extention not in ['xlsx']:
                 context = {
                     'form': form,
                     'status': '1',
